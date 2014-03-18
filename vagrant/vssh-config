@@ -1,0 +1,8 @@
+# ssh -MNf vagrant@arroyo.local
+# ssh vagrant@arroyo.local 'my command'
+Host arroyo.local
+    Compression yes
+    CompressionLevel 7
+    ServerAliveInterval 600
+    ControlMaster auto
+    ControlPath /tmp/ssh-%r@%h:%p

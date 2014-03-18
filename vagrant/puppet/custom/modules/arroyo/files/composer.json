@@ -1,0 +1,8 @@
+{
+  "require": {
+    "drush/drush": "dev-master-fulltest"
+  },
+  "config": {
+    "bin-dir": "/usr/local/bin"
+  }
+}

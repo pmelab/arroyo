@@ -1,0 +1,7 @@
+shared/**
+!www/EMPTY.txt
+www/**
+!www/index.php
+vagrant/.vagrant/**
+vagrant/puppet/forge/**
+!vagrant/puppet/forge/Puppetfile

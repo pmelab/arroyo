@@ -1,0 +1,8 @@
+forge "http://forge.puppetlabs.com"
+
+mod "puppetlabs/apt"
+mod "puppetlabs/mysql"
+mod "puppetlabs/vcsrepo"
+mod "puppetlabs/ruby"
+mod "willdurand/nodejs"
+mod "nodes/php"
