@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# get the command to execute
+command=${@:1:$(($#))}
+
+# setup directories
+vm_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+vm_dir=${vm_dir%/*/*}
+www_dir=$vm_dir/www
+vagrant_dir=$vm_dir/vagrant
+pwd=$(pwd)
+
+# determine the workind directory inside the vm
+# by default, execute commands from /home/vagrant
+cwd="/home/vagrant"
+
+# if current working directory is inside the www-folder, set the working directory inside vm.
+if [[ $pwd == "$www_dir"* ]];
+then
+    cwd=${pwd/$www_dir/"/var/www"}
+fi
+
+# ssh key variables
+key=~/.vagrant.d/insecure_private_key
+host=vagrant@arroyo.local
+config=$vagrant_dir/vssh-config
+if ! [[ $(pgrep -f "vagrant@arroyo.local") ]]; then
+    ssh -MNf -i $key -F $config $host
+fi
+ssh -i $key -F $config $host " cd $cwd; $command";
