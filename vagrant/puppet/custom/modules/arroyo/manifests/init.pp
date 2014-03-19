@@ -24,6 +24,8 @@ class arroyo {
 
   /* Basic software. */
   package { 'git-core': }
+  package { 'vim': }
+  package { 'ctags': }
 
   /* Mysql */
   class { 'mysql::server':
@@ -260,6 +262,26 @@ class arroyo {
     require => [
       Exec['drush_init']
     ],
+  }
+
+  exec { 'amix_vimrc':
+    user => 'vagrant',
+    command => 'git clone git://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh',
+    path => "/usr/local/bin/:/bin/:/usr/bin/",
+    creates => "/home/vagrant/.vim_runtime",
+    require => [
+      Package['git-core'],
+      Package['vim'],
+      Package['ctags']
+    ],
+  }
+
+  exec { 'amix_vimrc_update':
+    user => 'vagrant',
+    command => 'git pull --rebase',
+    cwd => '/home/vagrant/.vim_runtime',
+    path => "/usr/local/bin/:/bin/:/usr/bin/",
+    require => Exec['amix_vimrc']
   }
 
   file { "/home/vagrant/.drush/aliases.drushrc.php":
