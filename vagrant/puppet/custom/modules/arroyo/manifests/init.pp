@@ -37,8 +37,29 @@ class arroyo {
 
   /* Basic software. */
   package { 'git-core': }
+  package { 'git-flow':
+    require => Package['git-core'],
+  }
   package { 'vim': }
   package { 'ctags': }
+  package { 'wget': }
+  package { 'fontforge': }
+  package { 'ttfautohint': }
+  package { 'zip': }
+  package { 'unzip': }
+
+  /* Install fontcustom dependencies */
+  exec { 'woff-code':
+    command => 'wget http://people.mozilla.com/~jkew/woff/woff-code-latest.zip && unzip woff-code-latest.zip -d /root/sfnt2woff && cd /root/sfnt2woff && make && mv /root/sfnt2woff/sfnt2woff /usr/bin',
+    path    => "/usr/local/bin/:/bin/:/usr/bin/",
+    creates => "/usr/bin/sfnt2woff",
+    cwd => '/root',
+    require  => [
+      Package['wget'],
+      Package['zip'],
+      Package['unzip'],
+    ],
+  }
 
   /* Mysql */
   class { 'mysql::server':
