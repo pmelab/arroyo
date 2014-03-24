@@ -1,6 +1,7 @@
 # ssh -MNf vagrant@arroyo.local
 # ssh vagrant@arroyo.local 'my command'
 Host arroyo.local
+    StrictHostKeyChecking no
     Compression yes
     CompressionLevel 7
     ServerAliveInterval 600
