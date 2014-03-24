@@ -2,7 +2,7 @@ class arroyo {
 /* Define dotdeb sources. */
   apt::source { 'dotdeb-base':
     location          => 'http://packages.dotdeb.org',
-    release           => 'squeeze',
+    release           => 'wheezy',
     repos             => 'all',
     required_packages => 'debian-keyring debian-archive-keyring',
     key               => '89DF5277',
@@ -11,9 +11,22 @@ class arroyo {
     include_src       => true,
   }
 
+  /*
   apt::source { 'dotdeb-php54':
     location          => 'http://packages.dotdeb.org',
     release           => 'squeeze-php54',
+    repos             => 'all',
+    required_packages => 'debian-keyring debian-archive-keyring',
+    key               => '89DF5277',
+    key_server        => 'keys.gnupg.net',
+    pin               => '1001',
+    include_src       => true,
+  }
+  */
+
+  apt::source { 'dotdeb-php55':
+    location          => 'http://packages.dotdeb.org',
+    release           => 'wheezy-php55',
     repos             => 'all',
     required_packages => 'debian-keyring debian-archive-keyring',
     key               => '89DF5277',
@@ -62,7 +75,7 @@ class arroyo {
 
   /* PHP */
   package { 'php5-fpm':
-    require => Apt::Source['dotdeb-php54'],
+    require => Apt::Source['dotdeb-php55'],
   }
 
   service {'php5-fpm':
@@ -266,7 +279,7 @@ class arroyo {
 
   exec { 'amix_vimrc':
     user => 'vagrant',
-    command => 'git clone git://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh',
+    command => 'git clone git://github.com/amix/vimrc.git /home/vagrant/.vim_runtime && sh /home/vagrant/.vim_runtime/install_awesome_vimrc.sh',
     path => "/usr/local/bin/:/bin/:/usr/bin/",
     creates => "/home/vagrant/.vim_runtime",
     require => [

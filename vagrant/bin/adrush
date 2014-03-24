@@ -1,2 +1,3 @@
 #!/bin/bash
-acommand drush ${@:1:$(($#))}
+
+"$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/acommand drush ${@:1:$(($#))}
