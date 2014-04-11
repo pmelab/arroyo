@@ -1,0 +1,24 @@
+[submodule "vagrant/puppet/forge/modules/apt"]
+	path = vagrant/puppet/forge/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt
+[submodule "vagrant/puppet/forge/modules/mysql"]
+	path = vagrant/puppet/forge/modules/mysql
+	url = https://github.com/puppetlabs/puppetlabs-mysql
+[submodule "vagrant/puppet/forge/modules/nodejs"]
+	path = vagrant/puppet/forge/modules/nodejs
+	url = https://github.com/willdurand/puppet-nodejs.git
+[submodule "vagrant/puppet/forge/modules/php"]
+	path = vagrant/puppet/forge/modules/php
+	url = https://github.com/jippi/puppet-php.git
+[submodule "vagrant/puppet/forge/modules/ruby"]
+	path = vagrant/puppet/forge/modules/ruby
+	url = https://github.com/puppetlabs/puppetlabs-ruby
+[submodule "vagrant/puppet/forge/modules/stdlib"]
+	path = vagrant/puppet/forge/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "vagrant/puppet/forge/modules/vcsrepo"]
+	path = vagrant/puppet/forge/modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo
+[submodule "vagrant/puppet/forge/modules/wget"]
+	path = vagrant/puppet/forge/modules/wget
+	url = http://github.com/maestrodev/puppet-wget.git
