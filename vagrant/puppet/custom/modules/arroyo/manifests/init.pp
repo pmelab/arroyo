@@ -354,6 +354,11 @@ class arroyo {
     require => Class['nodejs'],
   }
 
+  package { 'gulp':
+    provider => 'npm',
+    require => Class['nodejs'],
+  }
+
   package { 'bower':
     provider => 'npm',
     require => Class['nodejs'],
