@@ -11,19 +11,6 @@ class arroyo {
     include_src       => true,
   }
 
-  /*
-  apt::source { 'dotdeb-php54':
-    location          => 'http://packages.dotdeb.org',
-    release           => 'squeeze-php54',
-    repos             => 'all',
-    required_packages => 'debian-keyring debian-archive-keyring',
-    key               => '89DF5277',
-    key_server        => 'keys.gnupg.net',
-    pin               => '1001',
-    include_src       => true,
-  }
-  */
-
   apt::source { 'dotdeb-php55':
     location          => 'http://packages.dotdeb.org',
     release           => 'wheezy-php55',
@@ -64,7 +51,33 @@ class arroyo {
   /* Mysql */
   class { 'mysql::server':
     root_password => 'root',
-    override_options => { 'mysqld' => { 'bind_address' => '0.0.0.0' }},
+    override_options => { 'mysqld' => {
+      'bind_address' => '0.0.0.0',
+      'tmp-table-size' => '32M',
+      'max-heap-table-size' => '32M',
+      'query-cache-type' => '0',
+      'query-cache-size' => '0',
+      'max-connections' => '500',
+      'thread-cache-size' => '50',
+      'open-files-limit' => '65535',
+      'table-definition-cache' => '4096',
+      'table-open-cache' => '4096',
+      'innodb-flush-method' => 'O_DIRECT',
+      'innodb-log-files-in-group' => '2',
+      'innodb-log-file-size' => '128M',
+      'innodb-flush-log-at-trx-commit' => '1',
+      'innodb-file-per-table' => '1',
+      'innodb-buffer-pool-size' => '2G',
+      'key-buffer-size' => '128M',
+      'max-allowed-packet' => '512M'
+    }},
+    grants => {'root@%' => {
+      ensure => 'present',
+      options => ['GRANT'],
+      privileges => ['ALL PRIVILEGES'],
+      table => '*.*',
+      user => 'root@%'
+    }},
     require => Apt::Source['dotdeb-base'],
   }
 
