@@ -52,7 +52,7 @@ class arroyo {
   class { 'mysql::server':
     root_password => 'root',
     override_options => { 'mysqld' => {
-      'bind_address' => '0.0.0.0',
+      'bind_address' => '0.0.0.0'/*,
       'tmp-table-size' => '32M',
       'max-heap-table-size' => '32M',
       'query-cache-type' => '0',
@@ -69,7 +69,7 @@ class arroyo {
       'innodb-file-per-table' => '1',
       'innodb-buffer-pool-size' => '2G',
       'key-buffer-size' => '128M',
-      'max-allowed-packet' => '512M'
+      'max-allowed-packet' => '32M'*/
     }},
     grants => {'root@%' => {
       ensure => 'present',
