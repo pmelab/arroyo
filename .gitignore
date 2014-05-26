@@ -4,3 +4,4 @@ www/**
 !www/EMPTY.txt
 !www/index.php
 vagrant/.vagrant/**
+.DS_Store
